@@ -22,4 +22,9 @@ EXPOSE 8080
 
 RUN mvn clean install
 
+RUN chgrp -R 0 /app \
+    && chmod -R g+rwX /app
+
+USER 9008
+
 CMD mvn jetty:run
