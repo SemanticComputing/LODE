@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.essepuntato</groupId>
@@ -7,6 +8,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<apachecommons.version>2.1.1</apachecommons.version>
+		<apachecommonsbeanutils.version>1.9.3</apachecommonsbeanutils.version>
+		<log4j.version>1.7.7</log4j.version>
+		<sl4j.version>1.7.7</sl4j.version>
 	</properties>
 
 	<dependencies>
@@ -74,6 +79,30 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Commons configuration -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>${apachecommons.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${apachecommonsbeanutils.version}</version>
+		</dependency>
+
+		<!-- Logging LOG4J - SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>${sl4j.version}</version>
+		</dependency>
+
 	</dependencies>
 
 
@@ -101,9 +130,11 @@
 						<contextPath>/lode</contextPath>
 					</webApp>
 					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+						<connector
+							implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
 							<port>8080</port>
 							<maxIdleTime>60000</maxIdleTime>
+							<forwarded>true</forwarded>
 						</connector>
 					</connectors>
 				</configuration>
